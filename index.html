@@ -1,1 +1,40 @@
-hoho
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Test page</title>
+</head>
+<body>
+	<script>
+		var p = new Promise(function(s, f){
+			s(123);
+		});
+		p.then(function(v){
+			console.log(v);
+			throw new Error('a');
+			return v + 1;
+		}).then(function(v){
+			console.log(v);
+			return v + 1;
+		}).catch(function(e){
+			console.log(e);
+			return 2;
+		}).then(function(v){
+			console.log(v);
+		});
+		if(navigator.serviceWorker){
+			navigator.serviceWorker.register("/test.js").then(function(r){
+				console.log(r.scope);
+			}).catch(function(e){
+				console.log(e);
+			});
+		}
+		//var w = new Worker("test.js");
+		// w.addEventListener("message", function(m){
+		// 			console.log("worker said: " + m.data);
+		// 		}, false);
+		//w.postMessage("Hello worker!");
+		
+	</script>
+</body>
+</html>
