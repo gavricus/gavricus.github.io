@@ -37,7 +37,7 @@
 				});
 				console.log(serviceWorkerRegistration);
 			});
-			
+			console.log(Notification.permission);
 			navigator.serviceWorker.register("/test.js").then(function(r){
 				console.log(r.scope);
 			}).catch(function(e){

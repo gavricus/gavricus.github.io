@@ -3,5 +3,6 @@
   "short_name": "Push Demo",  
   "start_url": "/start.html",  
   "display": "standalone",  
-  "gcm_sender_id": "301982642029"
+  "gcm_sender_id": "301982642029",
+  "gcm_user_visible_only": true
 }
