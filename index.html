@@ -45,7 +45,7 @@
 			console.log(124);
 			navigator.serviceWorker.ready.then(function(reg) {
 				reg.pushManager.getSubscription().then(function(subscription){
-					
+					console.log("subscription is " + subscription);
 				}).catch(function(e){
 					console.log("get subscription failed " + e);
 				});
