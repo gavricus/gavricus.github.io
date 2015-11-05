@@ -27,16 +27,22 @@
 			navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
 				serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {
 					console.log(subscription);
+					// The subscription was successful  
+					isPushEnabled = true;  
+					//pushButton.textContent = 'Disable Push Messages';  
+					//pushButton.disabled = false;
+					//return sendSubscriptionToServer(subscription);
 				}).catch(function(e){
 					console.log(e);
 				});
 				console.log(serviceWorkerRegistration);
 			});
-			// navigator.serviceWorker.register("/test.js").then(function(r){
-			// 				console.log(r.scope);
-			// 			}).catch(function(e){
-			// 				console.log(e);
-			// 			});
+			
+			navigator.serviceWorker.register("/test.js").then(function(r){
+				console.log(r.scope);
+			}).catch(function(e){
+				console.log(e);
+			});
 		}
 		
 		//var w = new Worker("test.js");
