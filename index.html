@@ -8,7 +8,7 @@
 <body>
 	<script>
 		var p = new Promise(function(s, f){
-			s(123);
+			//s(123);
 		});
 		p.then(function(v){
 			console.log(v);
@@ -25,6 +25,9 @@
 		});
 		if(navigator.serviceWorker){
 			navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+				serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
+					console.log(subscription);
+				});
 				console.log(serviceWorkerRegistration);
 			});
 			// navigator.serviceWorker.register("/test.js").then(function(r){
