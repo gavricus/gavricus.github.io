@@ -46,41 +46,18 @@
 			navigator.serviceWorker.ready.then(function(reg) {
 				reg.pushManager.getSubscription().then(function(subscription){
 					console.log("subscription is " + subscription);
+					if(subscription == null){
+						reg.pushManager.subscribe().then(function(subscription) {  
+							console.log("subscription is " + subscription);
+						}).catch(function(e) {  
+							console.log("permission is " + Notification.permission + "; error is " + e);
+						});
+					}
 				}).catch(function(e){
 					console.log("get subscription failed " + e);
 				});
 			});
-		});
-		/*
-		
-		if(navigator.serviceWorker){
-			navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-				
-				return;
-				serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {
-					console.log(subscription);
-					//endpoint: "https://android.googleapis.com/gcm/send/cgJJ8JJ67hA:APA91bFF8KWCPUiou-YTRC-Q2GxsL-7ou4LKzFP3eYtp4M-w8X2s2pEiJdL3LCqtTw4AiCB9vwJ8sc9gDxmpQ5573N-ratrhFf76s2FX70hUcm4w-i2dwq3U9iPSIRk0Dbmhy64tVeZ5"
-					//"https://android.googleapis.com/gcm/send";
-			      
-					
-					// The subscription was successful  
-					isPushEnabled = true;  
-					//pushButton.textContent = 'Disable Push Messages';  
-					//pushButton.disabled = false;
-					//return sendSubscriptionToServer(subscription);
-				}).catch(function(e){
-					console.log(e);
-				});
-				console.log(serviceWorkerRegistration);
-			});
-			console.log(Notification.permission);
-			navigator.serviceWorker.register("/test2.js").then(function(r){
-				console.log(r.scope);
-			}).catch(function(e){
-				console.log(e);
-			});
-		}
-		*/
+		});		
 		//var w = new Worker("test.js");
 		// w.addEventListener("message", function(m){
 		// 			console.log("worker said: " + m.data);
