@@ -42,6 +42,7 @@
 		}).catch(function(e){
 			console.log(e);
 		}).then(function(){
+			console.log(124);
 			navigator.serviceWorker.ready.then(function(reg) {
 				reg.pushManager.getSubscription().then(function(subscription){
 					
