@@ -25,7 +25,7 @@
 		});
 		if(navigator.serviceWorker){
 			navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-				serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
+				serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {
 					console.log(subscription);
 				});
 				console.log(serviceWorkerRegistration);
