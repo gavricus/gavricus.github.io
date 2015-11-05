@@ -32,6 +32,8 @@
 		}
 		if(Notification.permission == "denied"){
 			new Error('notifications disabled');
+		}else{
+			console.log("permission is " + Notification.permission);
 		}
 		
 		navigator.serviceWorker.register("/test2.js").then(function(r){
