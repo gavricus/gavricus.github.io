@@ -23,8 +23,36 @@
 		}).then(function(v){
 			console.log(v);
 		});
+		
+		if(!navigator.serviceWorker){
+			new Error('no service workers api');
+		}
+		if(!("showNotification" in ServiceWorkerRegistration.prototype)){
+			new Error('no notification api');
+		}
+		if(Notification.permission == "denied"){
+			new Error('notifications disabled');
+		}
+		
+		navigator.serviceWorker.register("/test2.js").then(function(r){
+			console.log(r.scope);
+		}).catch(function(e){
+			console.log(e);
+		}).then(function(){
+			navigator.serviceWorker.ready.then(function(reg) {
+				reg.pushManager.getSubscription().then(function(subscription){
+					
+				}).catch(function(e){
+					console.log("get subscription failed " + e);
+				});
+			});
+		});
+		/*
+		
 		if(navigator.serviceWorker){
 			navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+				
+				return;
 				serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {
 					console.log(subscription);
 					//endpoint: "https://android.googleapis.com/gcm/send/cgJJ8JJ67hA:APA91bFF8KWCPUiou-YTRC-Q2GxsL-7ou4LKzFP3eYtp4M-w8X2s2pEiJdL3LCqtTw4AiCB9vwJ8sc9gDxmpQ5573N-ratrhFf76s2FX70hUcm4w-i2dwq3U9iPSIRk0Dbmhy64tVeZ5"
@@ -48,7 +76,7 @@
 				console.log(e);
 			});
 		}
-		
+		*/
 		//var w = new Worker("test.js");
 		// w.addEventListener("message", function(m){
 		// 			console.log("worker said: " + m.data);
