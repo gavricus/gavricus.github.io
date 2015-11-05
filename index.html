@@ -24,12 +24,16 @@
 			console.log(v);
 		});
 		if(navigator.serviceWorker){
-			navigator.serviceWorker.register("/test.js").then(function(r){
-				console.log(r.scope);
-			}).catch(function(e){
-				console.log(e);
+			navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+				console.log(serviceWorkerRegistration);
 			});
+			// navigator.serviceWorker.register("/test.js").then(function(r){
+			// 				console.log(r.scope);
+			// 			}).catch(function(e){
+			// 				console.log(e);
+			// 			});
 		}
+		
 		//var w = new Worker("test.js");
 		// w.addEventListener("message", function(m){
 		// 			console.log("worker said: " + m.data);
