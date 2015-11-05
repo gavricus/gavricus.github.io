@@ -47,7 +47,7 @@
 				reg.pushManager.getSubscription().then(function(subscription){
 					console.log("subscription is " + subscription);
 					if(subscription == null){
-						reg.pushManager.subscribe().then(function(subscription) {  
+						reg.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {  
 							console.log("subscription is " + subscription);
 						}).catch(function(e) {  
 							console.log("permission is " + Notification.permission + "; error is " + e);
