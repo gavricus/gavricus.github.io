@@ -45,7 +45,7 @@
 			console.log(124);
 			navigator.serviceWorker.ready.then(function(reg) {
 				reg.pushManager.getSubscription().then(function(subscription){
-					console.log("subscription is " + subscription);
+					console.log(subscription);
 					if(subscription == null){
 						reg.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {  
 							console.log(subscription);
