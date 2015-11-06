@@ -27,7 +27,7 @@
 		if(!navigator.serviceWorker){
 			new Error('no service workers api');
 		}
-		if(!("showNotification" in ServiceWorkerRegistration.prototype)){
+		if(!window.Notification){
 			new Error('no notification api');
 		}
 		if(Notification.permission == "denied"){
