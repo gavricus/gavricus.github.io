@@ -8,7 +8,7 @@ self.addEventListener('push', function(event) {
   var tag = 'simple-push-demo-notification-tag';
 
 event.waitUntil(  
-    fetch("https://gavricus.github.io/test.json").then(function(response) {  
+    fetch("https://gavricus.github.io/test2.json").then(function(response) {  
       if (response.status !== 200) {  
         console.log('Looks like there was a problem. Status Code: ' + response.status);  
         throw new Error();  
