@@ -6,63 +6,9 @@
   <title>Test page</title>
 </head>
 <body>
-	<script>
-		var p = new Promise(function(s, f){
-			//s(123);
-		});
-		p.then(function(v){
-			console.log(v);
-			throw new Error('a');
-			return v + 1;
-		}).then(function(v){
-			console.log(v);
-			return v + 1;
-		}).catch(function(e){
-			console.log(e);
-			return 2;
-		}).then(function(v){
-			console.log(v);
-		});
-		
-		if(!navigator.serviceWorker){
-			new Error('no service workers api');
-		}
-		if(!window.Notification){
-			new Error('no notification api');
-		}
-		if(Notification.permission == "denied"){
-			new Error('notifications disabled');
-		}else{
-			console.log("permission is " + Notification.permission);
-		}
-		
-		navigator.serviceWorker.register("/test4.js").then(function(r){
-			console.log(r.scope);
-			return r;
-		}).catch(function(e){
-			console.log(e);
-		}).then(function(){
-			navigator.serviceWorker.ready.then(function(reg) {
-				reg.pushManager.getSubscription().then(function(subscription){
-					console.log(subscription);
-					if(subscription == null){
-						reg.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {  
-							console.log(subscription);
-						}).catch(function(e) {  
-							console.log("permission is " + Notification.permission + "; error is " + e);
-						});
-					}
-				}).catch(function(e){
-					console.log("get subscription failed " + e);
-				});
-			});
-		});		
-		//var w = new Worker("test.js");
-		// w.addEventListener("message", function(m){
-		// 			console.log("worker said: " + m.data);
-		// 		}, false);
-		//w.postMessage("Hello worker!");
-		
+	<script src="/media/stoloto/push/chrome-push.js"></script>
+  <script>
+    Finch.ChromePush.init("/worker.js", "https://gavricus.github.io/push.json");
 	</script>
 </body>
 </html>

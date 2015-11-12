@@ -1,10 +1,10 @@
 var Finch = Finch || {};
 Finch.ChromePush = {
-	init: function(serviceWorkerUrl, postUrl, getUrl){
+	init: function(serviceWorkerUrl, postUrl){
 		if(!this.isEnabled()){
 			return;
 		}
-		var that = this.
+		var that = this;
 		navigator.serviceWorker.register(serviceWorkerUrl).then(function(r){
 			console.log("service worker installed successfully");
 		}).catch(function(e){
@@ -14,10 +14,10 @@ Finch.ChromePush = {
 			navigator.serviceWorker.ready.then(function(reg) {
 				reg.pushManager.getSubscription().then(function(subscription){
 					if(subscription != null){
-						that.postToken(subscription.endPoint.split("/").pop());
+						that.postToken(postUrl, subscription.endPoint.split("/").pop());
 					}else{
 						reg.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {  
-							that.postToken(subscription.endPoint.split("/").pop());
+							that.postToken(postUrl, subscription.endPoint.split("/").pop());
 						}).catch(function(e) {  
 							console.log("permission is " + Notification.permission);
 							console.log(e);
