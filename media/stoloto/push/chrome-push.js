@@ -14,10 +14,10 @@ Finch.ChromePush = {
 			navigator.serviceWorker.ready.then(function(reg) {
 				reg.pushManager.getSubscription().then(function(subscription){
 					if(subscription != null){
-						that.postToken(postUrl, subscription.endPoint.split("/").pop());
+						that.postToken(postUrl, subscription.endpoint.split("/").pop());
 					}else{
 						reg.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {  
-							that.postToken(postUrl, subscription.endPoint.split("/").pop());
+							that.postToken(postUrl, subscription.endpoint.split("/").pop());
 						}).catch(function(e) {  
 							console.log("permission is " + Notification.permission);
 							console.log(e);
